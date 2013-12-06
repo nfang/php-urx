@@ -53,7 +53,8 @@ class Url extends Uri {
   }
 
   /**
-   * Resolve relative URL based on the current one
+   * Resolve URL based on the current instance. 
+   * Supports single level directory navigation notation.
    */
   public function resolve($rela) {
     $_trimmed = ltrim($rela, './');
