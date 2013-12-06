@@ -2,6 +2,9 @@
 
 require_once 'uri.php';
 
+/**
+ * URN abstraction based on RFC2141 (http://www.ietf.org/rfc/rfc2141.txt)
+ */
 class Urn extends Uri {
   private $nid;
   public function getNamespaceIdentifier() {

@@ -2,6 +2,9 @@
 
 require_once 'uri.php';
 
+/**
+ * URL abstraction based on RFC1738 (http://www.ietf.org/rfc/rfc1738.txt)
+ */
 class Url extends Uri {
   private $scheme;
   public function getScheme() { 
@@ -24,8 +27,24 @@ class Url extends Uri {
   }
 
   private $query;
+
+  /**
+   * Get raw query string
+   */
   public function getQuery() { 
     return $this->query;
+  }
+
+  /**
+   * Get query parameters in an associative arrays
+   */
+  public function getQueryParams() {
+    $params = explode('&', $this->query);
+    foreach ($params as $p) {
+      $kv = explode('=', $p);
+      $ret[$kv[0]] = $kv[1];
+    }
+    return $ret;
   }
 
   private $fragment;
