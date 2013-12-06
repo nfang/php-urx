@@ -52,6 +52,30 @@ class Url extends Uri {
     return $this->fragment;
   }
 
+  /**
+   * Resolve relative URL based on the current one
+   */
+  public function resolve($rela) {
+    $_trimmed = ltrim($rela, './');
+    if (!$this->path || strpos($this->path, '/') === false) {
+      $_path = $_trimmed;
+    } else {
+      if (strpos($rela, '../') === false) {
+        $_path = preg_replace('/[^\/]+$/', $_trimmed, $this->path);
+      } else {
+        $_path = preg_replace('/[^\/]+\/[^\/]+$/', $_trimmed, $this->path);
+      }
+    }
+
+    return new Url($this->domain, array(
+      'scheme' => $this->scheme,
+      'port' => $this->port,
+      'path' => $_path,
+      'query' => $this->query,
+      'fragment' => $this->fragment
+    ));
+  }
+
   private static $_defaultOptions = array(
     'scheme' => 'http',
     'port' => 80,
