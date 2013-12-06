@@ -2,7 +2,7 @@
 
 ## Instantiation
 
-Instantiate URL/URN instance by invoking factory method with valid URI string representation.
+Instantiate URL/URN instances by invoking factory method with valid URI string representation.
 
 ```php
 $url = Uri::create('http://www.example.com/test.html?name=john&age=28&gender=male#page1');
@@ -16,12 +16,12 @@ Access URL/URN parts through a series of get methods. Returned values are URL en
 ```php
 $url = Uri::create('http://www.example.com/test.html?name=john duncan&age=28&gender=male#page1');
 
-$url->getScheme();
+$url->getScheme(); // http
 
 $url->getQueryParams()['name']; // john+duncan
 ```
 
-## Resolve relative URL
+## Resolve URL
 
 Take a relative URL, and resolve it based on the current instance.
 
